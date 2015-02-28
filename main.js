@@ -1,5 +1,6 @@
 
-var target_info_container; //targets the info container
+var target_info_container;
+var sName, sClass, sGrade, sNumber, contParent;
 var gradeCount = 0;
 var gradeTotal = 0;
 var studentArray = [];
@@ -10,72 +11,72 @@ function load() {
 }
 
 function record_info() {
-    var createContainer = document.createElement('ol'); 
+    var createContainer = document.createElement('ol');
+    var createGradeCont = document.createElement('ol');
     var createStudentName = document.createElement('li'); 
     var createStudentGrade = document.createElement('li');
     var createStudentClass = document.createElement('li');
     var createStudentNumber = document.createElement('li');
     var createStudentSelector = document.createElement('input');
-    var studentgradevalue = document.getElementById('student_grade').value;
-    var sName = document.getElementById('student_name').value;
-    var sClass = document.getElementById('student_class').value;
-    var sGrade = document.getElementById('student_grade').value;
-    var students = {'name':'sName', 'class':'sClass', 'grade':'sGrade'};
+    sName = document.getElementById('student_name').value;
+    sClass = document.getElementById('student_class').value;
+    sGrade = document.getElementById('student_grade').value;
         
-    if( sName === '') {
-            alert('please fill out all areas of the form');
-            return;
-        }else{
-    gradeTotal+=parseInt(studentgradevalue);
-    gradeCount++;
+    if(sName === '' || sGrade === '' || sClass === '') {
+        alert('name is not filled out');
+        return;
+    }
+    if(isNaN(sGrade)){
+        alert('use numbers in the grade sections');
+    }
+    else
+    {
+        gradeTotal+=parseInt(sGrade);
+        gradeCount++;
+        createContainer.setAttribute('id', 'container_for_'+ sName);
         // student number
-            
-    createStudentNumber.textContent = gradeCount; //displays the total number of students entered
-    console.log(document.getElementById('student_number').value); //test
-    createContainer.appendChild(createStudentNumber);
-    target_info_container.appendChild(createContainer);
-    
-    
-        // student first name
-            
-    createContainer.setAttribute('id', 'stored_'+ document.getElementById('student_name').value);
-    createStudentName.textContent = document.getElementById('student_name').value;
-    //createStudentName.textContent = students[].name = sName;
-    //students.name = sName; 
-    console.log(document.getElementById('student_name').value); //test
-    createContainer.appendChild(createStudentName);
-    target_info_container.appendChild(createContainer);
-        
+        createStudentNumber.setAttribute('id', sName + '_number');
+        createStudentNumber.textContent = gradeCount; //displays the total number of students entered
+        createContainer.appendChild(createStudentNumber);
+        target_info_container.appendChild(createContainer);
+
+        // student name
+        createStudentName.setAttribute('id', 'fullName_' + sName);
+        createStudentName.textContent = sName;
+        createContainer.appendChild(createStudentName);
+        target_info_container.appendChild(createContainer);
+
         // student class
-            
-    createStudentClass.textContent = document.getElementById('student_class').value;
-//turn this on to calculate while submitting ------For student grade table 1.5
-    /*
-    document.getElementById('total').innerHTML = Math.round(gradeTotal / gradeCount) + "%";
-    */
-    console.log(document.getElementById('student_class').value); //test
-    createContainer.appendChild(createStudentClass);
-    target_info_container.appendChild(createContainer);
+        createStudentClass.setAttribute('id', sName + '_class');
+        createStudentClass.textContent = sClass;
+        //turn this on to calculate while submitting ------For student grade table 1.5
+        /*document.getElementById('total').innerHTML = Math.round(gradeTotal / gradeCount) + "%";*/
+
+        createContainer.appendChild(createStudentClass);
+        target_info_container.appendChild(createContainer);
 
         // student grade
-            
-    createStudentGrade.textContent = document.getElementById('student_grade').value;
-    //createStudentName.textContent = students.name = sGrade; 
-    console.log(document.getElementById('student_grade').value); //test
-    createContainer.appendChild(createStudentGrade);
-    target_info_container.appendChild(createContainer);
-
+        createStudentGrade.setAttribute('id', sGrade);
+        createStudentGrade.textContent = sGrade;
+        createContainer.appendChild(createStudentGrade);
+        target_info_container.appendChild(createContainer);
         
         // student selector
-
-    createStudentSelector.setAttribute('type', 'checkbox');
-    console.log(document.getElementById('student_selector').value); //test
-    createContainer.appendChild(createStudentSelector);
-    target_info_container.appendChild(createContainer);
+        createStudentSelector.setAttribute('id', sName + '_select');
+        createStudentSelector.setAttribute('type', 'checkbox');
+        createContainer.appendChild(createStudentSelector);
+        target_info_container.appendChild(createContainer);
+        
+var student = {'container' : createContainer, 
+               'number': createStudentNumber,
+               'name': createStudentName, 
+               'class': createStudentClass, 
+               'grade': createStudentGrade, 
+               'check': createStudentSelector};
+     
+                studentArray.push(student);
     }
 }
-
-
 
 
 // calculates the total grade when Add button is hit
@@ -83,17 +84,40 @@ function record_info() {
 // -----[ working for Student grade Table 2.0 ]-----//
 
 function calc() {
+    var totalEle = document.getElementById('total').innerHTML
     var answer = document.getElementById('total').innerHTML = Math.round(gradeTotal / gradeCount) + "%";
+    
     
         if(answer === 'NaN%') {
             alert('please fill out all areas of the form');
-            document.getElementById('total').innerHTML = 'error';
+            totalEle = 'error';
             return;
         }
-        else
-        {
-            document.getElementById('total').innerHTML = Math.round(gradeTotal / gradeCount) + "%";
+        if(gradeCount <= 1) {
+            alert('add more students');
+            totalEle = 'error';
+            return;
+        }
+        else {
+            answer;
     }
  }
 
-
+function removeLine() {
+    
+    if(studentArray.length < 1){
+        return;
+    }
+        
+    var keepArray = [];
+    contParent = studentArray[0].container.parentElement;
+    
+    for(var i = 0; i < studentArray.length; i++) {
+        if(studentArray[i].check.checked) { 
+            contParent.removeChild(studentArray[i].container);
+        }else{
+            keepArray.push(studentArray[i]); 
+        }
+    }
+    studentArray = keepArray;
+}

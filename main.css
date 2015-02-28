@@ -3,7 +3,7 @@
     margin: 0 auto;
 }
 */
-form {
+#form {
     width: 520px;
     height: auto;
     padding: 50px 50px;;
@@ -17,7 +17,7 @@ form {
     width: 48px;
 }
 
-form h1 {
+#form h1 {
     text-align: center;
     color: rgba(255, 255, 255,1.0);
     font-family: Tahoma;
@@ -26,31 +26,34 @@ form h1 {
 
 
 #info_container ol {
-    #position: relative;
-    #display: inline-block;
+    position: relative;
+    display: inline-block;
     width: 500px;
     left: 0px;
     padding-left: 0px;
     border: 1px solid white;
     height: 30px;
+    text-transform: capitalize;
+    margin: 5px 0px;
 }
 
 #info_container input {
     width: 25px;
+    height: 30px;
     vertical-align: bottom;
-    margin-left: 30px;
+    margin-left: 25px;
 }
 
 #info_container li {
     display: inline-block;
-    position: relative;
     width: 125px;
     text-align: center;
     color: rgba(255, 255, 255,1.0);
-    height: 30px;
+    height: 20px;
     #left: -40px;
     font-family: tahoma;
     #float: left;
+    margin-bottom: 10px;
 }
 
 #info_container li:nth-child(1) {
@@ -62,34 +65,43 @@ form h1 {
 
 #totalBar {
     text-align: center;
-    width: 308px;
+    width: 306px;
     margin: 0 auto;
     height: 32px;
     left: 50px;
-    background-color: grey;
+    background-color: rgba(255, 255, 255,0.0);
     position: absolute;
     font-size: 22px;
     margin-top: 0px;
-    color: rgba(255, 255, 255,1.0);
+    color: white;
     padding-top: 0px;
     font-family: tahoma;
     border: 1px solid rgba(255, 255, 255,1.0);
+    text-transform: capitalize;
+    margin-top: 5px;
+}
+
+#totalBar:hover {
+    background-color: rgba(255, 255, 255,1.0);
+    color: rgba(52, 73, 94,1.0);
+    cursor: pointer;
 }
 
 #total {
     text-align: center;
-    width: 121px;
+    width: 122px;
     margin: 0 auto;
-    height: 33px;
-    right: 132px;
+    height: 32px;
+    right: 134px;
     background-color: rgba(52, 73, 94,1.0);
     position: absolute;
-    font-size: 22px;
+    font-size: 20px;
     #margin-top: 2px;
     color: rgba(255, 255, 255,1.0);
     padding-top: 0px;
     font-family: tahoma;
     border: 1px solid rgba(255, 255, 255,1.0);
+    margin-top: 5px;
 }
 .text_input {
     background-color: rgba(255, 255, 255,0.0);
@@ -101,11 +113,12 @@ form h1 {
     position: absolute;
     display: none;
 }
-input {
+.text_input input {
     width: 120px;
     border: 1px solid black;
     margin-left: 0px;
     height: 30px;
+    text-transform: capitalize;
 }
 
 .title .colume {
@@ -113,13 +126,15 @@ input {
     width: 122px;
     text-align: center;
     font-size: 20px;
-    margin: 0 auto;
+    margin: 0px auto;
     position: relative;
     height: 30px;
     padding-top: 5px;
     #background-color: rgba(255, 255, 255,1.0);
     color: rgba(255, 255, 255,1.0);
     border: 1px solid rgba(255, 255, 255,1.0);
+    text-transform: capitalize;
+    #margin-bottom: 5px;
 }
 
 .title #numb {
@@ -141,30 +156,60 @@ input {
     box-sizing: border-box;
     cursor: pointer;
     margin: 0px 0px 5px 0px;
+    text-transform: capitalize;
 }
 
-.addbtn {
+.removebtn {
     color: white;
     background-color: grey;
-    height: 35px;
-    width: 62px;
+    height: 34px;
+    width: 60px;
     padding: 0px;
     vertical-align: top;
     box-sizing: border-box;
     cursor: pointer;
     position: absolute;
     display: inline-block;
-    right: 66px;
-    bottom: 15px;
+    right: 70px;
+    bottom: 11px;
+    text-transform: capitalize;
+}
+
+.addbtn {
+    color: white;
+    background-color: grey;
+    height: 34px;
+    width: 60px;
+    padding: 0px;
+    vertical-align: top;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: absolute;
+    display: inline-block;
+    right: 262px;
+    bottom: 11px;
+    text-transform: capitalize;
 }
 .avg {
     #position: relative;
     width: 580px;
     display: inline;
     height: 40px;
+    margin-top: 2px;
+}
+.firstPlace {
+    background-color: rgba(22, 160, 133,1.0);
 }
 
-
+.secondPlace {
+    background-color: rgba(39, 174, 96,1.0);
+}
+.thirdPlace {
+    background-color: rgba(46, 204, 113,1.0);
+}
+.lastPlace {
+    background-color: rgba(192, 57, 43,1.0);
+}
 .delete {
     width: 50px;
     right: 0px;

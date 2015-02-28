@@ -8,7 +8,7 @@
     <title>student grade table</title>
 </head>
 <body onload="load()">
-    <form><h1>Student Grade Table</h1>
+    <div id="form"><h1>Student Grade Table</h1>
     <div class="text_input">
         <input type="text" name="number" id="student_number" placeholder="" disabled>
         <input type="text" name="name" id="student_name" placeholder="Full Name">
@@ -16,7 +16,9 @@
         <input type="text" name="class" id="student_class" placeholder="Student Class">
         <input type="text" name="grade" id="student_grade" placeholder="Students Grade">
         <input id="student_selector">
-        <button type="button" class="btn" onclick="reset()">clear</button>
+        <button type="button" class="btn" onclick="record_info()">submit</button>
+        
+
         
         
     </div>
@@ -27,15 +29,17 @@
         <span class="colume">class</span>
             <span class="colume">grade</span>
         
-            <button type="button" class="btn" onclick="record_info()">submit</button>
+            
         </div>
         
     <div class="created" id="info_container"></div>
         <div class="avg">
-        <div class="" id="totalBar">average: </div>
+            <div id="totalBar" onclick="calc()">Class Average</div>
         <div class="" id="total"></div>
-        <button type="button" class="addbtn" onclick="calc()">add</button>
+        <button type="button" class="removebtn" onclick="removeLine()">Remove</button>
+        <!--<button type="button" class="addbtn" onclick="calc()">Total</button>-->
+            
             </div>
-        </form>
+        </div>
     </body>
 </html>
